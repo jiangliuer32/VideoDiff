@@ -37,7 +37,13 @@ def get_video_info(in_file):
 if __name__ == '__main__':
     file_path = 'C:/Users/xiaoli/Desktop/VID20230702033914.mp4'
     video_info = get_video_info(file_path)
-    total_duration = float(video_info['duration'])
-
-
-    print(total_duration)
+    total_duration = video_info['duration']
+    print('总时间：' + total_duration + 's')
+    random_time = random.randint(1, int(float(total_duration)) - 1) + random.random()
+    print('随机时间：' + str(random_time) + 's')
+    out = read_frame_by_time(file_path, random_time)
+    print(type(out))
+    # image_array = numpy.asarray(bytearray(out), dtype="uint8")
+    # image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
+    # cv2.imshow('frame', image)
+    # cv2.waitKey()
