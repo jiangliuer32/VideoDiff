@@ -16,6 +16,11 @@ def read_frame_by_time(in_file, time):
               .output('pipe:', vframes=1, format='image2', vcodec='mjpeg')
               .run(capture_stdout=True)
     )
+    # image_array = numpy.asarray(bytearray(out), dtype="uint8")
+    # image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
+    # cv2.imshow('frame', image)
+    # cv2.inweite('C:/Users/xiaoli/Desktop/VID20230702033914.mp4','test')
+    # cv2.waitKey()
     return out
 
 
@@ -43,7 +48,9 @@ if __name__ == '__main__':
     print('随机时间：' + str(random_time) + 's')
     out = read_frame_by_time(file_path, random_time)
     print(type(out))
-    # image_array = numpy.asarray(bytearray(out), dtype="uint8")
-    # image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
-    # cv2.imshow('frame', image)
-    # cv2.waitKey()
+    image_array = numpy.asarray(bytearray(out), dtype="uint8")
+    print(type(image_array))
+    image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
+    cv2.imshow('frame', image)
+    cv2.imwrite('C:/Users/xiaoli/Desktop/test2.jpg',image)
+    cv2.waitKey()

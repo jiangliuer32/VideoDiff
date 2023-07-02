@@ -1,5 +1,5 @@
 from airtest.aircv.cal_confidence import *
-
+import os
 def makeFolderResult(imgPath, logName):
     logFloder = os.path.join(imgPath, f'图片对比结果')
     os.mkdir(logFloder)
@@ -41,13 +41,14 @@ def imageCompare(imagePath, logPath,threshold:int):
             confidence = cal_ccoeff_confidence(img1, img2)
             if confidence > threshold:
                 writeMsg = f"【对比失败】,疑似 {img_1_Name}  与  {img_2_Name} 两张图片一致,相似度为：{round(confidence * 100, 2)}%"
-                wirteLog(writeMsg, logPath)
+                print('1')
                 print(writeMsg)
             else:
+                print('失败')
                 pass
 
 if __name__ == '__main__':
-    imagePath = "填入你图片存放的路径"
+    imagePath = "C:\\Users\\xiaoli\\Desktop\\ima"
     logName = str(imagePath.split("\\")[-1]) + ".txt"
     logPath = makeFolderResult(imagePath, logName)
-    imageCompare(imagePath, logPath)
+    imageCompare(imagePath, logPath,0.8)
