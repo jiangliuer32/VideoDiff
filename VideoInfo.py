@@ -5,10 +5,8 @@ import sys
 import random
 
 class VideoInfo:
-    def __int__(self,inFile,outFile):
+    def __init__(self,inFile):
         self.inFile = inFile
-        self.outFile = outFile
-
 
     def getframeByTime(self,time):
         """
@@ -29,12 +27,21 @@ class VideoInfo:
         probe = ffmpeg.probe(self.inFile)
         video_stream = next((stream for stream in probe['streams'] if stream['codec_type'] == 'video'), None)
         if video_stream is None:
-            print('No video stream found', file=sys.stderr)
+            print('没有找到视频信息', file=sys.stderr)
             sys.exit(1)
         return video_stream
 
 
 if __name__ == '__main__':
+    t = VideoInfo()
+
+
+
+
+
+
+
+
     file_path = 'C:/Users/xiaoli/Desktop/VID20230702033914.mp4'
     video_info = get_video_info(file_path)
     width = int(video_stream['width'])
