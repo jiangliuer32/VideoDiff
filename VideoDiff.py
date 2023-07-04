@@ -21,7 +21,7 @@ class VideoDiff():
         if math.floor(infoB['duration']) != math.floor(infoA['duration']):
             print("视频时长不相等")
         else:
-            vDuration = math.floor(infoB['duration'])%self.duration
+            vDuration = math.floor(infoA['duration'])%self.duration
 
             for i in (1,vDuration+1):
                 time = time + vDuration
@@ -31,6 +31,9 @@ class VideoDiff():
                 image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
                 outFile = outFile + "\\" + str(i) + ".img"
                 cv2.inweite(self.outFile, image)
+
+                img1 = cv2.resize(cv2.imread(image), (370, 800))  # 图片尺寸根据实际图片写入
+                img2 = cv2.resize(cv2.imread(image), (370, 800))
 
 
 

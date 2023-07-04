@@ -3,6 +3,7 @@ import numpy
 import cv2
 import sys
 import random
+from airtest.aircv.cal_confidence import *
 
 class VideoInfo:
     def __init__(self,inFile):
