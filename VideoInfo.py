@@ -34,19 +34,9 @@ class VideoInfo:
 
 
 if __name__ == '__main__':
-    t = VideoInfo()
-
-
-
-
-
-
-
-
     file_path = 'C:/Users/xiaoli/Desktop/VID20230702033914.mp4'
-    video_info = get_video_info(file_path)
-    width = int(video_stream['width'])
-    height = int(video_stream['height'])
+    t = VideoInfo(file_path)
+    video_info = t.getVideoInfo
     total_duration = video_info['duration']
     print('总时间：' + total_duration + 's')
     random_time = random.randint(1, int(float(total_duration)) - 1) + random.random()
