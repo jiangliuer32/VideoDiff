@@ -8,7 +8,7 @@ class VideoDiff():
     def __init__(self,inFileA,inFileB,diffFrequency):
         """
         :param inFileA:A视频路径
-        :param inFileB:B视频路径 
+        :param inFileB:B视频路径
         :param diffFrequency: 抽帧次数
         """
         self.inFileA = inFileA
