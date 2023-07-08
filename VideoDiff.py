@@ -5,16 +5,16 @@ import math
 import cv2
 import sys
 class VideoDiff():
-    def __init__(self,inFileA,inFileB,diffFrequency):
+    def __init__(self,inFileA,inFileB,diffNumber):
         """
         :param inFileA:A视频路径
         :param inFileB:B视频路径
-        :param diffFrequency: 抽帧次数
+        :param diffNumber: 抽帧次数
         """
         self.inFileA = inFileA
         self.inFileB = inFileB
         #self.outFile = outFile
-        self.diffFrequency = diffFrequency
+        self.diffNumber = diffNumber
 
     def videoDiff(self):
         """
@@ -37,10 +37,10 @@ class VideoDiff():
             print("视频时长不相等,A视频：%s秒,B视频：%s秒" %(videoLengthA,videoLengthB))
             sys.exit()
         else:
-            timeInterval = round(math.floor(videoLengthA)/self.diffFrequency,1) #根据输入抽帧频率,判断截取时间间隔
+            timeInterval = round(math.floor(videoLengthA)/self.diffNumber,1) #根据输入抽帧频率,判断截取时间间隔
             time = timeInterval
 
-            for i in range(1,self.diffFrequency+1):
+            for i in range(1,self.diffNumber+1):
                 outA = videoA.getframeByTime(time)
                 image_array = numpy.asarray(bytearray(outA), dtype="uint8")
                 imageA = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
