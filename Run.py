@@ -9,6 +9,6 @@ if __name__ == '__main__':
     print(a)
     for key, value in a.items():
         if value <= 0.96:
-            print( "对比出现diff:两视频第%.1f秒抽帧,对比度为：%s" %(key,value))
+            print("对比出现diff:两视频第%.1f秒抽帧,对比度为：%s" %(key,value))
         else:
-            print( "对比相同:两视频第%.1f秒抽帧,对比度为：%s" %(key,value))
+            print("对比相同:两视频第%.1f秒抽帧,对比度为：%s" %(key,value))

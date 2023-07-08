@@ -13,7 +13,7 @@ class VideoDiff():
         """
         self.inFileA = inFileA
         self.inFileB = inFileB
-        #self.outFile = outFile
+        #self.outFile = outFile #暂时保存，后期考虑图片保存
         self.diffNumber = diffNumber
 
     def videoDiff(self):

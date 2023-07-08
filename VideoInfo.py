@@ -25,6 +25,7 @@ class VideoInfo:
         获取视频详细信息
         :return: 视频信息
         """
+        #后期再写异常情况
         probe = ffmpeg.probe(self.inFile)
         video_stream = next((stream for stream in probe['streams'] if stream['codec_type'] == 'video'), None)
         return video_stream
