@@ -1,54 +1,57 @@
-from VideoInfo import VideoInfo
+from VideoInfo import *
 from airtest.aircv.cal_confidence import *
 import numpy
 import math
 import cv2
-
-
+import sys
 class VideoDiff():
-    def __init__(self,inFileA,inFileB,outFile,duration):
+    def __init__(self,inFileA,inFileB,diffFrequency):
+        """
+        :param inFileA:A视频路径
+        :param inFileB:B视频路径 
+        :param diffFrequency: 抽帧次数
+        """
         self.inFileA = inFileA
         self.inFileB = inFileB
-        self.outFile = outFile
-        self.duration = duration
+        #self.outFile = outFile
+        self.diffFrequency = diffFrequency
 
     def videoDiff(self):
-        diffResult=[] #存储diff结果
+        """
+        视频抽帧比较
+        :return: 字典形式返回对比数据
+        """
+        diffResult={}
+        #获取A视频信息
         videoA = VideoInfo(self.inFileA)
         infoA  = videoA.getVideoInfo()
+        videoLengthA=round(float(infoA['duration']),2)
 
+        #获取B视频信息
         videoB = VideoInfo(self.inFileB)
         infoB  = videoB.getVideoInfo()
+        videoLengthB=round(float(infoB['duration']),2)
 
-        if math.floor(infoB['duration']) != math.floor(infoA['duration']):
-            print("视频时长不相等")
+        #1.优先判断视频时常是否相等 2.抽帧对比结果
+        if  videoLengthA != videoLengthB:
+            print("视频时长不相等,A视频：%s秒,B视频：%s秒" %(videoLengthA,videoLengthB))
+            sys.exit()
         else:
-            vDuration = math.floor(infoA['duration'])%self.duration #根据输入 选择截取图片次数
+            timeInterval = round(math.floor(videoLengthA)/self.diffFrequency,1) #根据输入抽帧频率,判断截取时间间隔
+            time = timeInterval
 
-            for i in (1,vDuration+1):
-                time = time + vDuration
-
+            for i in range(1,self.diffFrequency+1):
                 outA = videoA.getframeByTime(time)
                 image_array = numpy.asarray(bytearray(outA), dtype="uint8")
                 imageA = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
-                heightA, widthA, channels = imageA.shape
-                #wideA =
 
                 outB = videoB.getframeByTime(time)
                 image_array = numpy.asarray(bytearray(outB), dtype="uint8")
                 imageB = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
-                heightB, widthB, channels = imageB.shape
 
-                # outFile = outFile + "\\" + str(i) + ".img"
-                # cv2.inweite(self.outFile, image)
+                #使用算法对比
+                confidence = cal_ccoeff_confidence(imageA, imageB)
+                diffResult[time] = confidence
+                time += timeInterval
 
-                img1 = cv2.resize(cv2.imread(imageA), (heightA, widthA))  # 图片尺寸根据实际图片写入
-                img2 = cv2.resize(cv2.imread(imageB), (heightB, widthB))
-                confidence = cal_ccoeff_confidence(img1, img2)
-
-                if confidence < 95:
-                    print("视频校验失败")
-                    diffResult.append(confidence)
-                else:
-                    diffResult.append(confidence)
-
+        return diffResult
