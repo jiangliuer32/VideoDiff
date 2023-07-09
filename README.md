@@ -7,13 +7,13 @@
 * ffmpeg：https://www.ffmpeg.org/download.html
 
 ### 二、运行方式（需安装requirements.txt里的第三包）
-#### 1.脚本运行：找到Run.py，填入对应参数（可自行调整抽帧次数）
+#### 1.脚本运行：找到 Run.py，填入对应参数（可自行调整抽帧次数）
 ![alt 流程图](https://github.com/jiangliuer32/Image/blob/999193e953952e10b116f0c89555234e054f54be/iamge/run.png)
 #### 2.图形界面运行：python TestGuiRun.py
 ![alt 流程图](https://github.com/jiangliuer32/Image/blob/999193e953952e10b116f0c89555234e054f54be/iamge/guiRun.png)
 
 ### 三、运行结果说明
-#### 1.脚本结果：控制台打印结果
+#### 1.脚本结果：控制台打印
 ![alt 流程图](https://github.com/jiangliuer32/Image/blob/999193e953952e10b116f0c89555234e054f54be/iamge/runResult.png)
 #### 2.界面结果：点击确认，等待结果弹窗
 ![alt 流程图](https://github.com/jiangliuer32/Image/blob/999193e953952e10b116f0c89555234e054f54be/iamge/runGuiResult.png)
