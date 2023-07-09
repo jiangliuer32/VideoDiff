@@ -20,19 +20,22 @@ class MyFrame(wx.Frame):
 
 	def OnclickSubmit(self, event):
 		message = ""
-		username = self.textVideoPathA.GetValue()
-		password = self.textVideoPathB.GetValue()
+		videoPathA = self.textVideoPathA.GetValue()
+		videoPathB = self.textVideoPathB.GetValue()
 
-		diff = VideoDiff(username,password,12)
+		videoInfo = VideoInfo(videoPathA)
+		out = videoInfo.getVideoInfo()
+		diffNumber = math.floor(float(out['duration']))
+
+		diff = VideoDiff(videoPathA,videoPathB,diffNumber)
 		result = diff.videoDiff()
 
 		if len(result) == 0:
-			message = "运行失败,请检查路径重试"
+			message = "对比失败，请检查视频时常是否相等"
 		else:
 			for key, value in result.items():
 				if value <= 0.96:
 					message ="视频不相同，请检查第"+str(key)+"秒视频"
-					break
 				else:
 					message ="视频相同"
 

@@ -35,7 +35,6 @@ class VideoDiff():
         #1.优先判断视频时常是否相等 2.抽帧对比结果
         if  videoLengthA != videoLengthB:
             print("视频时长不相等,A视频：%s秒,B视频：%s秒" %(videoLengthA,videoLengthB))
-            sys.exit()
         else:
             timeInterval = round(math.floor(videoLengthA)/self.diffNumber,1) #根据输入抽帧频率,判断截取时间间隔（时常向下取整 / 抽帧数量，结果保留1位小数）
             time = timeInterval
