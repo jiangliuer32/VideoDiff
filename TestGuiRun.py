@@ -40,8 +40,8 @@ class MyFrame(wx.Frame):
 		wx.MessageBox(message)  # 弹出提示框
 
 	def OnclickCancel(self, event):
-		self.textVideoPathA.SetValue("")  # 清空用户框
-		self.textVideoPathB.SetValue("")  # 清空密码框
+		self.textVideoPathA.SetValue("")  # 清空输入框
+		self.textVideoPathB.SetValue("")
 
 
 if __name__ == "__main__":
