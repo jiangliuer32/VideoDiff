@@ -5,7 +5,7 @@ if __name__ == '__main__':
     videoPathA = '视频A路径'
     videoPathB = '视频B路径'
     #diffNumber = number #视频抽取图片数。抽取规则：根据视频时常，平均取时间点抽取图片，例如：时常12秒，抽取12次数，固每秒抽取一次
-    #取法：根据视频时常，1秒一帧，也可自行输入
+    #diffNumber目前取法：根据视频时常，1秒一帧，也可自行输入
     videoInfo = VideoInfo(videoPathA)
     out = videoInfo.getVideoInfo()
     diffNumber = math.floor(float(out['duration']))
